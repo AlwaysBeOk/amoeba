@@ -1,8 +1,8 @@
-.form-row {
-  display: flex;
-  align-items: center;
+.api-create-dialog {
+  width: 75vw;
+  max-width: 550px;
 }
 
-.form-row md-input-container {
-  flex: 1;
+.form-row:first-child {
+  padding-top: 10px;
 }

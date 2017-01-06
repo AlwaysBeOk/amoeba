@@ -1,0 +1,18 @@
+.api-editor {
+  padding-top: 10px;
+}
+
+.editor-container {
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-left: none;
+  border-right: none;
+}
+
+.http-item {
+  margin: 20px 0;
+}
+
+.http-item strong {
+  font-family: "Arial", sans-serif;
+}

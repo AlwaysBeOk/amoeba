@@ -1,5 +1,15 @@
-<md-toolbar color="primary">
-  <md-icon>home</md-icon>
-  My App
+<md-toolbar color="accent">
+  <div class="top-bar-content">
+    <a routerLink="/" class="home-link">
+      <md-icon>home</md-icon>
+    </a>
+    <md-select color="primary">
+      <md-option>Playground</md-option>
+      <md-option>PC</md-option>
+    </md-select>
+    <input name="path">
+  </div>
 </md-toolbar>
-<router-outlet></router-outlet>
+<div class="main-content">
+  <router-outlet></router-outlet>
+</div>

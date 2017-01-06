@@ -1,4 +1,34 @@
-<p>
-  api-editor works!
-</p>
-<json-editor></json-editor>
+<div class="api-editor">
+  <div class="form-row">
+    <md-input-container>
+      <input md-input placeholder="API Description"/>
+    </md-input-container>
+    <md-slide-toggle></md-slide-toggle>
+  </div>
+  <div class="http-item">
+    <strong>Status:</strong>
+    <span>200</span>
+  </div>
+  <div class="http-item">
+    <strong>Headers:</strong>
+  </div>
+  <div class="http-item">
+    <strong>Body:</strong>
+    <div class="editor-container">
+  <textarea id="json">
+{
+    retCode: 0,
+    payload: [
+
+    ]
+}
+  </textarea>
+    </div>
+  </div>
+  <div>
+    <button md-raised-button color="primary" disabled>
+      <md-icon>save</md-icon>
+      Save
+    </button>
+  </div>
+</div>

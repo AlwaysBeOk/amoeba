@@ -1,26 +1,28 @@
-<h1 md-dialog-title>Create API</h1>
-<div md-dialog-content>
-  <div class="form-row">
-    <md-select placeholder="playground">
-      <md-option>
-        pc
-      </md-option>
-    </md-select>
-    <md-input-container>
-      <input md-input name="path" placeholder="Path">
-    </md-input-container>
+<div class="api-create-dialog">
+  <h1 md-dialog-title>Create API</h1>
+  <div md-dialog-content>
+    <div class="form-row">
+      <md-select placeholder="playground">
+        <md-option>
+          pc
+        </md-option>
+      </md-select>
+      <md-input-container>
+        <input md-input name="path" placeholder="Path">
+      </md-input-container>
+    </div>
+    <div class="form-row">
+      <md-input-container>
+        <textarea md-input placeholder="Description"></textarea>
+      </md-input-container>
+    </div>
   </div>
-  <div class="form-row">
-    <md-input-container>
-      <textarea md-input placeholder="Description"></textarea>
-    </md-input-container>
+  <div md-dialog-actions>
+    <button md-button>
+      <md-icon>done</md-icon>
+    </button>
+    <button md-button md-dialog-close>
+      <md-icon>close</md-icon>
+    </button>
   </div>
-</div>
-<div md-dialog-actions>
-  <button md-button>
-    <md-icon>done</md-icon>
-  </button>
-  <button md-button md-dialog-close>
-    <md-icon>close</md-icon>
-  </button>
 </div>

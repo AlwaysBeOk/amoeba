@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/core/theming/prebuilt/indigo-pink.css';
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+@import '~codemirror/lib/codemirror.css';
 
 html, body {
   margin: 0;
@@ -9,3 +10,30 @@ html, body {
 [md-dialog-actions]:last-child {
   text-align: right;
 }
+
+.form-row {
+  display: flex;
+  align-items: center;
+}
+
+.form-row md-select {
+  margin-right: 10px;
+}
+
+.form-row md-input-container {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.form-row md-input-container:last-child {
+  margin-right: 0;
+}
+
+/*.top-bar-content .md-select-trigger {*/
+  /*border-color: rgba(255, 255, 255, 0.87);*/
+/*}*/
+
+/*.top-bar-content .md-select-arrow,*/
+/*.top-bar-content .md-select-value {*/
+  /*color: rgba(255, 255, 255, 0.87);*/
+/*}*/
