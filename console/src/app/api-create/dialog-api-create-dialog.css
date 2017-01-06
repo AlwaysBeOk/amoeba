@@ -1,0 +1,8 @@
+.form-row {
+  display: flex;
+  align-items: center;
+}
+
+.form-row md-input-container {
+  flex: 1;
+}
