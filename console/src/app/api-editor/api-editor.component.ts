@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+
+import { ApiService } from '../api.service';
+import { Api, ApiItem } from '../api';
 
 import * as CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript';
@@ -10,7 +14,10 @@ import 'codemirror/mode/javascript/javascript';
 })
 export class ApiEditorComponent implements OnInit {
 
-  constructor() { }
+  api: Api;
+  apiItem: ApiItem = new ApiItem();
+
+  constructor(private route: ActivatedRoute, private router: Router, private apiService: ApiService) { }
 
   ngOnInit() {
     CodeMirror.fromTextArea(<HTMLTextAreaElement>document.getElementById('json'), {
@@ -20,6 +27,17 @@ export class ApiEditorComponent implements OnInit {
         json: true
       }
     });
+
+    const namespace = this.route.snapshot.params['namespace'];
+    const path = this.route.snapshot.params['path'];
+    console.log(namespace, path);
+
+    this.apiService.getApi(namespace, path).subscribe((api: Api) => {
+      console.log(api);
+      this.api = api;
+      this.apiItem = this.api.route[0];
+      console.log(this.apiItem);
+    })
   }
 
 }

@@ -11,6 +11,8 @@ import { PlaygroundListComponent } from './playground-list/playground-list.compo
 import { ApiCreateComponent, ApiCreateDialog } from './api-create/api-create.component';
 import { ApiEditorComponent } from './api-editor/api-editor.component';
 
+import { ApiService } from './api.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,9 @@ import { ApiEditorComponent } from './api-editor/api-editor.component';
   entryComponents: [
     ApiCreateDialog
   ],
-  providers: [],
+  providers: [
+    ApiService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

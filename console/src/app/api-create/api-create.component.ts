@@ -1,6 +1,8 @@
-import { Component, OnInit, Optional } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
+
+import { Api } from '../api';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-api-create',
@@ -30,7 +32,31 @@ export class ApiCreateComponent implements OnInit {
 })
 export class ApiCreateDialog {
 
-  constructor(public dialogRef: MdDialogRef<ApiCreateDialog>) {
+  api: Api;
 
+  constructor(public dialogRef: MdDialogRef<ApiCreateDialog>, private apiService: ApiService) {
+    this.api = {
+      namespace: '',
+      path: '',
+      route: [
+        {
+          description : 'Default Response',
+          response : {
+            content : {
+              status : '200',
+              type : 'json',
+              body : '{}'
+            },
+            inherited : false
+          }
+        }
+      ],
+      disabled: false
+    }
+  }
+
+  create() {
+    console.log(this.api);
+    this.apiService.create(this.api).then(api => console.log(api));
   }
 }

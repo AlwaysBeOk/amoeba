@@ -15,7 +15,7 @@ const appRoutes: Routes = [
     component: ApiCreateComponent
   },
   {
-    path: 'api/:id',
+    path: 'api/:namespace/:path',
     component: ApiEditorComponent
   }
 ];
