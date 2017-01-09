@@ -1,4 +1,5 @@
 <div class="api-editor">
+  {{apiItem.description}}
   <div class="form-row">
     <md-input-container>
       <input md-input placeholder="API Description" [(ngModel)]="apiItem.description"/>
@@ -7,7 +8,7 @@
   </div>
   <div class="http-item">
     <strong>Status:</strong>
-    <span>200</span>
+    <span>{{apiItem.response.content.status}}</span>
   </div>
   <div class="http-item">
     <strong>Headers:</strong>
@@ -15,14 +16,7 @@
   <div class="http-item">
     <strong>Body:</strong>
     <div class="editor-container">
-  <textarea id="json">
-{
-    retCode: 0,
-    payload: [
-
-    ]
-}
-  </textarea>
+  <textarea id="json">{{apiItem.response.content.body}}</textarea>
     </div>
   </div>
   <div>
