@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PlaygroundListComponent } from './playground-list/playground-list.component';
 import { ApiCreateDialog } from './api-create/api-create.component';
 import { ApiEditorComponent } from './api-editor/api-editor.component';
+import { JsonEditorComponent } from './json-editor/json-editor.component';
 
 import { ApiService } from './api.service';
 
@@ -18,7 +19,8 @@ import { ApiService } from './api.service';
     AppComponent,
     PlaygroundListComponent,
     ApiCreateDialog,
-    ApiEditorComponent
+    ApiEditorComponent,
+    JsonEditorComponent
   ],
   imports: [
     BrowserModule,

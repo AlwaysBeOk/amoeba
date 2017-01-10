@@ -1,6 +1,6 @@
 export class Api {
-  namespace: String;
-  path: String;
+  namespace: string;
+  path: string;
   route: ApiItem[];
   disabled: boolean;
 
@@ -10,7 +10,7 @@ export class Api {
 }
 
 export class ApiItem {
-  description: String = '';
+  description: string = 'Default API';
   response : ApiResponseConfig;
 
   constructor () {
@@ -28,7 +28,7 @@ export class ApiResponseConfig {
 }
 
 export class ApiResponse {
-  status: String = '200';
-  type: String = 'json';
-  body: String = '{}';
+  status: string = '200';
+  type: string = 'json';
+  body: string = '{}';
 }

@@ -5,10 +5,8 @@ import { ApiService } from '../api.service';
 import { Api, ApiItem } from '../api';
 import { ApiCreateDialog } from '../api-create/api-create.component';
 
-import * as CodeMirror from 'codemirror';
 import { Response } from "@angular/http";
 import {MdDialog} from "@angular/material";
-// import 'codemirror/mode/javascript/javascript';
 
 @Component({
   selector: 'app-api-editor',
@@ -18,40 +16,45 @@ import {MdDialog} from "@angular/material";
 export class ApiEditorComponent implements OnInit {
 
   api: Api;
-  apiItem: ApiItem = new ApiItem();
+  apiItem: ApiItem;
+  namespace: string;
+  path: string
 
-  constructor(private dialog: MdDialog, private route: ActivatedRoute, private router: Router, private apiService: ApiService) { }
+  constructor(private dialog: MdDialog, private route: ActivatedRoute, private apiService: ApiService) { }
 
   ngOnInit() {
-    CodeMirror.fromTextArea(<HTMLTextAreaElement>document.getElementById('json'), {
-      lineNumbers: true,
-      mode: {
-        name: 'javascript',
-        json: true
-      }
-    });
+    this.namespace = this.route.snapshot.params['namespace'];
+    this.path = this.route.snapshot.params['path'];
 
-    const namespace = this.route.snapshot.params['namespace'];
-    const path = this.route.snapshot.params['path'];
-
-    console.log(this.apiItem);
-
-    this.apiService.getApi(namespace, path).subscribe((api: Api) => {
+    this.apiService.getApi(this.namespace, this.path).subscribe((api: Api) => {
       this.api = api;
       this.apiItem = this.api.route[0];
     }, (r: Response) => {
       if (r.status === 404) {
-        this.openDialog(namespace, path);
+        this.openDialog(this.namespace, this.path);
       }
     })
   }
 
-  openDialog(namespace: String, path: String) {
+  updateJsonContent(json: string) {
+    this.apiItem.response.content.body = json;
+  }
+
+  openDialog(namespace: string, path: string) {
     let dialogRef = this.dialog.open(ApiCreateDialog);
     dialogRef.componentInstance.namespace = namespace;
     dialogRef.componentInstance.path = path;
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+    dialogRef.afterClosed().subscribe(api => {
+      console.log(api);
+      this.api = api;
+      this.apiItem = this.api.route[0];
+    });
+  }
+
+  update() {
+    console.log(this.api);
+    this.apiService.update(this.api).subscribe((api: Api) => {
+      console.log(api);
     });
   }
 }

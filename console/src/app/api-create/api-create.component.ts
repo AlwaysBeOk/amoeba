@@ -11,11 +11,11 @@ import { ApiService } from '../api.service';
 })
 export class ApiCreateDialog implements OnInit  {
 
-  namespace: String;
-  path: String;
+  namespace: string;
+  path: string;
   api: Api = new Api();
 
-  constructor(public dialogRef: MdDialogRef<ApiCreateDialog>, private apiService: ApiService) {
+  constructor(private dialogRef: MdDialogRef<ApiCreateDialog>, private apiService: ApiService) {
 
   }
 
@@ -25,7 +25,8 @@ export class ApiCreateDialog implements OnInit  {
   }
 
   create() {
-    console.log(this.api);
-    this.apiService.create(this.api).then(api => console.log(api));
+    this.apiService.create(this.api).subscribe(api =>
+      this.dialogRef.close(api)
+    );
   }
 }

@@ -1,5 +1,16 @@
-<div class="api-editor">
-  {{apiItem.description}}
+<md-toolbar color="accent">
+  <div class="top-bar-content">
+    <a routerLink="/" class="home-link">
+      <md-icon>home</md-icon>
+    </a>
+    <md-select color="primary" [(ngModel)]="namespace">
+      <md-option value="playground">Playground</md-option>
+      <md-option value="pc">PC</md-option>
+    </md-select>
+    <input name="path" [(ngModel)]="path">
+  </div>
+</md-toolbar>
+<div class="api-editor" *ngIf="apiItem != null">
   <div class="form-row">
     <md-input-container>
       <input md-input placeholder="API Description" [(ngModel)]="apiItem.description"/>
@@ -16,11 +27,11 @@
   <div class="http-item">
     <strong>Body:</strong>
     <div class="editor-container">
-  <textarea id="json">{{apiItem.response.content.body}}</textarea>
+      <app-json-editor [value]="apiItem.response.content.body" (onChange)="updateJsonContent($event)"></app-json-editor>
     </div>
   </div>
   <div>
-    <button md-raised-button color="primary" disabled>
+    <button md-raised-button color="primary" (click)="update()">
       <md-icon>save</md-icon>
       Save
     </button>
