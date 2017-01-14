@@ -18,7 +18,7 @@ export class ApiEditorComponent implements OnInit {
   api: Api;
   apiItem: ApiItem;
   namespace: string;
-  path: string
+  path: string;
 
   constructor(private dialog: MdDialog, private route: ActivatedRoute, private apiService: ApiService) { }
 

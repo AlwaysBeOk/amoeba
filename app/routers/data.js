@@ -1,3 +1,4 @@
+var Mock = require('mockjs');
 var _ = require('underscore'),
   mongoose = require('mongoose'),
   Api = mongoose.model('Api'),
@@ -8,11 +9,18 @@ var _ = require('underscore'),
 
 var CONTENT_TYPES = {
   'json': 'application/json',
+  'javascript': 'text/javascript',
   'text': 'text/plain',
   'html': 'text/html',
   'xml': 'application/xml'
 };
 var DEFAULT_CONTENT_TYPE = 'json';
+
+function getQueryParameters(str) {
+  return (str.replace(/(^\?)/, '').split("&").map(function (n) {
+    return n = n.split("="), this[n[0]] = n[1], this;
+  }.bind({}))[0]);
+}
 
 module.exports = function (router) {
   router.route('/:namespace/:uri')
@@ -22,6 +30,7 @@ module.exports = function (router) {
         namespace: req.params.namespace,
         path: target.path
       };
+      req.apiQuery = target.query;
       try {
         api = Api.normalizeKeys(api);
       }
@@ -92,8 +101,11 @@ module.exports = function (router) {
       value: CONTENT_TYPES[info.type] || CONTENT_TYPES[DEFAULT_CONTENT_TYPE]
     });
     if (info.type === 'json') {
-      var Mock = require('mockjs');
       info.body = JSON.stringify(Mock.mock(JSON.parse(info.body)));
+    }
+    if (info.type === 'jsonp') {
+      var queryObject = getQueryParameters(req.apiQuery);
+      info.body = queryObject.callback + "(" + JSON.stringify(Mock.mock(JSON.parse(info.body))) + ")";
     }
     res.status(info.status || 200);
     _(info.headers).forEach(function(header) {

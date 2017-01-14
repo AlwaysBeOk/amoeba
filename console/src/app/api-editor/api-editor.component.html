@@ -25,9 +25,17 @@
     <strong>Headers:</strong>
   </div>
   <div class="http-item">
+    <strong>Content-Type:</strong>
+    <md-select [(ngModel)]="apiItem.response.content.type">
+      <md-option value="json">JSON</md-option>
+      <md-option value="jsonp">JSONP</md-option>
+      <md-option value="html">HTML</md-option>
+    </md-select>
+  </div>
+  <div class="http-item">
     <strong>Body:</strong>
     <div class="editor-container">
-      <app-json-editor [value]="apiItem.response.content.body" (onChange)="updateJsonContent($event)"></app-json-editor>
+      <app-json-editor [value]="apiItem.response.content.body" [type]="apiItem.response.content.type" (onChange)="updateJsonContent($event)"></app-json-editor>
     </div>
   </div>
   <div>
