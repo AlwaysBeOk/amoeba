@@ -13,17 +13,17 @@ export class ApiService {
   constructor(public http: Http) { }
 
   getApi(namespace: string, path: string): Observable<Api> {
-    const url = `//localhost:3000/apis/${namespace}/${encodeURIComponent(path)}`;
+    const url = `/apis/${namespace}/${encodeURIComponent(path)}`;
     return this.http.get(url).map((r: Response) => r.json());
   }
 
   create(api: Api): Observable<Api> {
-    return this.http.post('//localhost:3000/apis', JSON.stringify(api), {headers: this.headers})
+    return this.http.post('/apis', JSON.stringify(api), {headers: this.headers})
       .map((r: Response) => r.json());
   }
 
   update(api: Api): Observable<Api> {
-    const url = `//localhost:3000/apis/${api.namespace}/${encodeURIComponent(api.path)}`;
+    const url = `/apis/${api.namespace}/${encodeURIComponent(api.path)}`;
     return this.http.put(url, JSON.stringify(api), {headers: this.headers})
       .map((r: Response) => r.json());
   }
