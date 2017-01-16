@@ -1,4 +1,5 @@
 var express = require('express');
+var path = require('path');
 var glob = require('glob');
 var config = require('./config');
 
@@ -15,6 +16,8 @@ var util = {
 };
 
 module.exports = function(app, config) {
+  app.use(express.static(path.join(__dirname, '../console/dist')));
+
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({

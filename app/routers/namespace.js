@@ -1,4 +1,3 @@
-const _ = require('underscore');
 const Namespace = require('../models/namespace');
 
 module.exports = function (router) {
